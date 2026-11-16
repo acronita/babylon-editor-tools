@@ -1,0 +1,25 @@
+{
+  "name": "babylon-editor-tools",
+  "version": "0.1.0",
+  "description": "Babylon.js Editor plugin that brings the Babylon.js web tools the editor lacks (Node Geometry, Node Render Graph, Flow Graph, Inspector V2, Convert to Node Material) into it, wired to the project.",
+  "keywords": [
+    "babylonjs",
+    "babylonjs-editor",
+    "node-material-editor",
+    "plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucscout/babylon-editor-tools.git"
+  },
+  "homepage": "https://github.com/lucscout/babylon-editor-tools#readme",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./editor": "./editor/plugin.cjs"
+  },
+  "files": [
+    "editor"
+  ]
+}
