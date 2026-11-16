@@ -16,7 +16,7 @@ exports.description = 'Babylon.js web tools the editor lacks, wired to the proje
 const TESTED_EDITOR_VERSION = '5.5.3';
 
 // Each feature: { name, install(editor) => dispose }.
-const FEATURES = [];
+const FEATURES = [require('./features/convert-to-node-material.cjs')];
 
 // One install per editor process, whichever copy of the plugin loads (or reloads) last.
 const KEY = Symbol.for('babylon-editor-tools.disposers');

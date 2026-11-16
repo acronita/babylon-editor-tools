@@ -39,7 +39,7 @@ version the plugin still loads and reports any feature that fails to install in 
 | Tool | Status |
 | --- | --- |
 | Node Material Editor, GUI Editor, Node Particle Editor | Built into the editor |
-| Convert to Node Material (PBR, Standard) | Planned |
+| Convert to Node Material (PBR, Standard) | Inspector button on Standard and PBR materials: builds the equivalent graph, saves it to `assets/materials/<name>.material` and puts it on every mesh that used the original (undoable). Its inputs show in the inspector. |
 | Node Geometry Editor | Planned |
 | Node Render Graph Editor | Planned |
 | Flow Graph Editor | Planned |
