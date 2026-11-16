@@ -1,9 +1,38 @@
 // The frame of a tool window, matching the editor's own tool windows: its toolbar (title, window
 // buttons, drag area), a host element for the tool, toasts, dark theme, Ctrl+S and closing.
 // Runs in the tool window's renderer, not in the editor's main window.
-const { basename } = require('path');
+const { basename, join } = require('path');
+const { tmpdir } = require('os');
+const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const { editorModule, editorRequire } = require('./editor-internals.cjs');
+
+// Tool windows have no developer tools: their errors and warnings go to this file as well.
+const LOG_FILE = join(tmpdir(), 'babylon-editor-tools.log');
+
+function captureErrors(title) {
+  const write = (level, args) => {
+    const text = args.map((a) => (a instanceof Error ? a.stack : typeof a === 'string' ? a : safeJson(a))).join(' ');
+    fs.appendFile(LOG_FILE, `${new Date().toISOString()} [${title}] ${level}: ${text}\n`, () => {});
+  };
+  for (const level of ['error', 'warn']) {
+    const original = console[level].bind(console);
+    console[level] = (...args) => {
+      write(level, args);
+      original(...args);
+    };
+  }
+  window.addEventListener('error', (ev) => write('uncaught', [ev.error ?? ev.message]));
+  window.addEventListener('unhandledrejection', (ev) => write('unhandled rejection', [ev.reason]));
+}
+
+function safeJson(value) {
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
 
 /**
  * @param {object} config
@@ -70,6 +99,9 @@ function createToolWindow({ title, mount }) {
     }
 
     async componentDidMount() {
+      captureErrors(title);
+      // Tool previews load glTF meshes (the editor's own NME window does the same).
+      editorModule('babylonjs-loaders');
       // The node editors only have a dark theme.
       document.body.classList.add('dark');
       ipcRenderer.on('save', this.onSave);
