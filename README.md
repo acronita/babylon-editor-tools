@@ -40,7 +40,7 @@ version the plugin still loads and reports any feature that fails to install in 
 | --- | --- |
 | Node Material Editor, GUI Editor, Node Particle Editor | Built into the editor |
 | Convert to Node Material (PBR, Standard) | Inspector button on Standard and PBR materials: builds the equivalent graph, saves it to `assets/materials/<name>.material` and puts it on every mesh that used the original (undoable). Its inputs show in the inspector. |
-| Node Geometry Editor | Planned |
+| Node Geometry Editor | `.ngeo` assets: Assets > Add > Node Geometry, double click opens the editor in a window, "Add to Scene" on the file builds a mesh. Saving rebuilds every mesh made from that file. The geometry is baked in the scene (nothing needed at runtime). |
 | Node Render Graph Editor | Planned |
 | Flow Graph Editor | Planned |
 | Inspector V2 | Planned |

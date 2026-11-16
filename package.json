@@ -21,5 +21,10 @@
   },
   "files": [
     "editor"
-  ]
+  ],
+  "dependencies": {
+    "babylonjs-inspector": "9.27.1",
+    "babylonjs-node-geometry-editor": "9.27.1",
+    "babylonjs-node-render-graph-editor": "9.27.1"
+  }
 }
