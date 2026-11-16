@@ -10,9 +10,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucscout/babylon-editor-tools.git"
+    "url": "git+https://github.com/acronita/babylon-editor-tools.git"
   },
-  "homepage": "https://github.com/lucscout/babylon-editor-tools#readme",
+  "homepage": "https://github.com/acronita/babylon-editor-tools#readme",
   "license": "MIT",
   "private": true,
   "type": "module",

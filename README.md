@@ -11,7 +11,7 @@ plugin adds what is missing (see [Status](#status)).
 In the editor's project:
 
 ```bash
-npm i -D github:lucscout/babylon-editor-tools
+npm i -D github:acronita/babylon-editor-tools
 ```
 
 Then list it in `project.bjseditor`:
