@@ -21,6 +21,10 @@ const FEATURES = [
   require('./features/convert-to-node-material.cjs'),
   require('./features/node-geometry.cjs'),
   require('./features/node-render-graph.cjs'),
+  require('./features/flow-graph.cjs'),
+  require('./features/inspector.cjs'),
+  // Last: shows the menu items the features above registered.
+  { name: 'Tools menu', install: require('./lib/tools-menu.cjs').installToolsMenu },
 ];
 
 // One install per editor process, whichever copy of the plugin loads (or reloads) last.
