@@ -9,6 +9,10 @@
 //
 // The UMD bundles also require namespaces as "package::BABYLON.Name.Space" (what the global build
 // reads as window.BABYLON.Name.Space): that is the package's export at that path.
+//
+// In the main window the editor itself (build/src/editor/overrides.js) answers any request that
+// starts with "babylonjs" with its own babylonjs, so packages the editor lacks are loaded by their
+// absolute path from the plugin's node_modules.
 const Module = require('module');
 const { join } = require('path');
 const { ASAR } = require('./editor-internals.cjs');
@@ -20,6 +24,15 @@ function editorResolution(request) {
   if (!/^babylonjs(-[a-z0-9-]+)?$/.test(request)) return null;
   try {
     return require.resolve(request, { paths: editorPaths });
+  } catch {
+    return null;
+  }
+}
+
+function pluginResolution(request) {
+  if (!request.startsWith('babylonjs')) return null;
+  try {
+    return require.resolve(request);
   } catch {
     return null;
   }
@@ -37,10 +50,10 @@ function requireToolBundle(packageName) {
       for (const key of request.slice(separator + 2).split('.').slice(1)) value = value?.[key];
       return value;
     }
-    return load.call(this, editorResolution(request) ?? request, parent, isMain);
+    return load.call(this, editorResolution(request) ?? pluginResolution(request) ?? request, parent, isMain);
   };
   try {
-    const result = require(packageName);
+    const result = require(require.resolve(packageName));
     cache.set(packageName, result);
     return result;
   } finally {
