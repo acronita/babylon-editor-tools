@@ -44,7 +44,7 @@ version the plugin still loads and reports any feature that fails to install in 
 | Node Geometry Editor | `.ngeo` assets: Assets > Add > Node Geometry, double click opens the editor in a window, "Add to Scene" on the file builds a mesh. Saving rebuilds every mesh made from that file. The geometry is baked in the scene (nothing needed at runtime). |
 | Node Render Graph Editor | `.nrg` assets: Assets > Add > Node Render Graph, double click opens the editor in a window. The editor's viewport keeps its own rendering; the game applies the graph (below). |
 | Flow Graph Editor | Tools > Flow Graph Editor (online): the hosted editor in an editor window. It only ships as a website, built on Babylon.js's development version, so it needs internet and loads/saves through its own file dialogs. |
-| Inspector V2 | Tools > Inspector: Babylon.js Inspector V2 over the Preview panel, on the edited scene (or the played one while playing). Toggle it from the same menu item. |
+| Inspector V2 | Tools > Inspector V2: Babylon.js Inspector V2 over the Preview panel, on the edited scene (or the played one while playing). Toggle it from the same menu item. |
 
 ### Using a render graph in the game
 

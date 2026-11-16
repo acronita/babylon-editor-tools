@@ -40,7 +40,7 @@ function toggle(editor) {
 
 function install(editor) {
   const unregister = registerToolsMenuItem({
-    label: 'Inspector',
+    label: 'Inspector V2',
     checked: () => !!token,
     action: () => {
       try {
