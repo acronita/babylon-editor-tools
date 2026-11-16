@@ -41,6 +41,23 @@ version the plugin still loads and reports any feature that fails to install in 
 | Node Material Editor, GUI Editor, Node Particle Editor | Built into the editor |
 | Convert to Node Material (PBR, Standard) | Inspector button on Standard and PBR materials: builds the equivalent graph, saves it to `assets/materials/<name>.material` and puts it on every mesh that used the original (undoable). Its inputs show in the inspector. |
 | Node Geometry Editor | `.ngeo` assets: Assets > Add > Node Geometry, double click opens the editor in a window, "Add to Scene" on the file builds a mesh. Saving rebuilds every mesh made from that file. The geometry is baked in the scene (nothing needed at runtime). |
-| Node Render Graph Editor | Planned |
+| Node Render Graph Editor | `.nrg` assets: Assets > Add > Node Render Graph, double click opens the editor in a window. The editor's viewport keeps its own rendering; the game applies the graph (below). |
 | Flow Graph Editor | Planned |
 | Inspector V2 | Planned |
+
+### Using a render graph in the game
+
+The editor's viewport keeps its usual rendering (its gizmos and picking rely on it). In the game:
+
+```ts
+import { NodeRenderGraph } from "@babylonjs/core";
+
+const json = await (await fetch("/scene/assets/my-graph.nrg")).json();
+const graph = NodeRenderGraph.Parse(json, scene);
+await graph.buildAsync(false, true, true); // build, wait for readiness, set as scene.frameGraph
+```
+
+## Debugging
+
+Tool windows have no developer tools. Their errors and warnings are appended to
+`babylon-editor-tools.log` in the system temp folder.

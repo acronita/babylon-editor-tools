@@ -20,6 +20,7 @@ const FEATURES = [
   { name: 'Asset types', install: require('./lib/asset-types.cjs').installAssetTypes },
   require('./features/convert-to-node-material.cjs'),
   require('./features/node-geometry.cjs'),
+  require('./features/node-render-graph.cjs'),
 ];
 
 // One install per editor process, whichever copy of the plugin loads (or reloads) last.
